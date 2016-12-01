@@ -19,7 +19,7 @@ namespace csharplord
         {
             InitializeComponent();
             grand_total = 0;
-            
+            jewkjfjnfewnfknk
         }
 
 
