@@ -14,7 +14,7 @@ namespace csharplord
     public partial class Form1 : Form
     {
         decimal grand_total;
-
+        int test2_variable;
         int test3;
 
         public Form1()
