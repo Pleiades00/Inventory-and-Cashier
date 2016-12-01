@@ -13,7 +13,7 @@ namespace csharplord
 {
     public partial class Form1 : Form
     {
-        decimal grand_total;
+        //decimal grand_total;
 
         public Form1()
         {
