@@ -15,11 +15,13 @@ namespace csharplord
     {
         decimal grand_total;
         int test2_variable;
+        int test3;
 
         public Form1()
         {
             InitializeComponent();
             grand_total = 0;
+            
         }
 
 
