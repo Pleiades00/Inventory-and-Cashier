@@ -27,6 +27,9 @@ namespace csharplord
 
         private void btn_add_item_Click(object sender, EventArgs e)
         {
+            Form2 newForm = new Form2();
+            newForm.Show();
+
             /* string newItem_name = txt_item.Text;
              int newItem_quantity = Convert.ToInt32(txt_quantity.Text);
              decimal newItem_price = Convert.ToDecimal(txt_price.Text);
@@ -79,6 +82,21 @@ namespace csharplord
         private void txt_price_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void list_item_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
