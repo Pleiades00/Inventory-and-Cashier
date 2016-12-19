@@ -79,6 +79,33 @@ namespace csharplord
             }
         }
 
+        public static void RegisterNewCustomer(string CustomerName, string Address, int ContactNumber)
+        {
+            using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
+            {
+                con.Open();
+                SqlDataAdapter da_Customer = new SqlDataAdapter("SELECT * FROM Customer", con);
+                DataSet ds_Customer = new DataSet("Customer");
+                da_Customer.FillSchema(ds_Customer, SchemaType.Source, "Customer");
+                da_Customer.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+                da_Customer.Fill(ds_Customer, "Customer");
+                con.Close();
+
+                using (DataRow newCustomerRow = ds_Customer.Tables["Customer"].NewRow())
+                {
+                    newCustomerRow["cust_id"] = "C" + (ds_Customer.Tables["Customer"].Rows.Count + 1).ToString("000");
+                    newCustomerRow["name"] = CustomerName;
+                    newCustomerRow["address"] = Address;
+                    newCustomerRow["contact_no"] = ContactNumber;
+                    newCustomerRow["date_registered"] = DateTime.Now.ToString("yyyy-MM-dd");
+                    newCustomerRow["point"] = 0;
+
+                    ds_Customer.Tables["Customer"].Rows.Add(newCustomerRow);
+                    
+                }
+            }
+        }
+
         public reg_cust()
         { 
         }

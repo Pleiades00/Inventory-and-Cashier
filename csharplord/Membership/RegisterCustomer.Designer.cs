@@ -28,34 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_register = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_name = new System.Windows.Forms.TextBox();
+            this.txt_address = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txt_contact_no = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_register
             // 
-            this.button1.Location = new System.Drawing.Point(314, 67);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Register";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_register.Location = new System.Drawing.Point(314, 67);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(75, 23);
+            this.btn_register.TabIndex = 11;
+            this.btn_register.Text = "Register";
+            this.btn_register.UseVisualStyleBackColor = true;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txt_name);
+            this.groupBox1.Controls.Add(this.txt_address);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txt_contact_no);
             this.groupBox1.Location = new System.Drawing.Point(15, 16);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 138);
@@ -71,19 +72,19 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Name";
             // 
-            // textBox1
+            // txt_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.txt_name.Location = new System.Drawing.Point(119, 22);
+            this.txt_name.Name = "txt_name";
+            this.txt_name.Size = new System.Drawing.Size(100, 20);
+            this.txt_name.TabIndex = 0;
             // 
-            // textBox2
+            // txt_address
             // 
-            this.textBox2.Location = new System.Drawing.Point(119, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
+            this.txt_address.Location = new System.Drawing.Point(119, 48);
+            this.txt_address.Name = "txt_address";
+            this.txt_address.Size = new System.Drawing.Size(100, 20);
+            this.txt_address.TabIndex = 2;
             // 
             // label4
             // 
@@ -103,19 +104,19 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Address";
             // 
-            // textBox4
+            // txt_contact_no
             // 
-            this.textBox4.Location = new System.Drawing.Point(119, 74);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 4;
+            this.txt_contact_no.Location = new System.Drawing.Point(119, 74);
+            this.txt_contact_no.Name = "txt_contact_no";
+            this.txt_contact_no.Size = new System.Drawing.Size(100, 20);
+            this.txt_contact_no.TabIndex = 4;
             // 
             // RegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 165);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_register);
             this.Controls.Add(this.groupBox1);
             this.Name = "RegisterCustomer";
             this.Text = "RegisterCustomer";
@@ -127,13 +128,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_register;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_name;
+        private System.Windows.Forms.TextBox txt_address;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txt_contact_no;
     }
 }
