@@ -65,21 +65,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class.cs" />
-    <Compile Include="ds_sqllord.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ds_sqllord.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Membership\MembershipMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Membership\MembershipMenu.Designer.cs">
+      <DependentUpon>MembershipMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Membership\RegisterCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Membership\RegisterCustomer.Designer.cs">
+      <DependentUpon>RegisterCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Membership\ViewRegisteredCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Membership\ViewRegisteredCustomer.Designer.cs">
+      <DependentUpon>ViewRegisteredCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Membership\MembershipMenu.resx">
+      <DependentUpon>MembershipMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Membership\RegisterCustomer.resx">
+      <DependentUpon>RegisterCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Membership\ViewRegisteredCustomer.resx">
+      <DependentUpon>ViewRegisteredCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,17 +112,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ds_sqllord.xsc">
-      <DependentUpon>ds_sqllord.xsd</DependentUpon>
-    </None>
-    <None Include="ds_sqllord.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ds_sqllord.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ds_sqllord.xss">
-      <DependentUpon>ds_sqllord.xsd</DependentUpon>
-    </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

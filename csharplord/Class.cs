@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace csharplord
 {
@@ -12,10 +14,84 @@ namespace csharplord
 
     sealed class reg_cust : customer //Registered Customers 
     {
-        string cust_id;
-        string name;
+        string _cust_id;
+        string _name;
         int contact_no;
         string address;
+        string date_reg;
+        int point;
+
+        public string cust_id
+        {
+            get
+            {
+                return _cust_id;
+            }
+            set
+            {
+                _cust_id = value;
+            }
+        }
+
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+
+        public static List<reg_cust> Populate()
+        {
+            using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
+            {
+                con.Open();
+                SqlDataAdapter da_Customer = new SqlDataAdapter("SELECT * FROM Customer", con);
+                DataSet ds_Customer = new DataSet("Customer");
+                da_Customer.FillSchema(ds_Customer, SchemaType.Source, "Customer");
+                da_Customer.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+                da_Customer.Fill(ds_Customer, "Customer");
+                DataTable dt_Customer = ds_Customer.Tables["Customer"];
+                con.Close();
+
+                List<reg_cust> cust = new List<reg_cust>();
+                foreach (DataRow dr_Customer in dt_Customer.Rows)
+                {
+                   
+
+                    cust.Add(new reg_cust
+                        (
+                        dr_Customer["cust_id"].ToString(),
+                        dr_Customer["name"].ToString(),
+                        Convert.ToInt32(dr_Customer["contact_no"]),
+                        dr_Customer["address"].ToString(),
+                        dr_Customer["date_registered"].ToString(),
+                        Convert.ToInt32(dr_Customer["point"])
+                        )
+                        );
+                }
+
+                return cust;
+            }
+        }
+
+        public reg_cust()
+        { 
+        }
+
+        private reg_cust(string CustomerID, string CustomerName, int ContactNumber, string Address, string DateRegistered, int PointAccumulated)
+        {
+            cust_id = CustomerID;
+            name = CustomerName;
+            contact_no = ContactNumber;
+            address = Address;
+            date_reg = DateRegistered;
+            point = PointAccumulated;
+        }
     }
 
     sealed class walk_in_cust : customer //Walk in Customers
