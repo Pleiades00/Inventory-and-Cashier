@@ -41,9 +41,9 @@
             // 
             // btn_register
             // 
-            this.btn_register.Location = new System.Drawing.Point(314, 67);
+            this.btn_register.Location = new System.Drawing.Point(339, 16);
             this.btn_register.Name = "btn_register";
-            this.btn_register.Size = new System.Drawing.Size(75, 23);
+            this.btn_register.Size = new System.Drawing.Size(174, 174);
             this.btn_register.TabIndex = 11;
             this.btn_register.Text = "Register";
             this.btn_register.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             this.groupBox1.Controls.Add(this.txt_contact_no);
             this.groupBox1.Location = new System.Drawing.Point(15, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 138);
+            this.groupBox1.Size = new System.Drawing.Size(293, 174);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -76,20 +76,22 @@
             // 
             this.txt_name.Location = new System.Drawing.Point(119, 22);
             this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(100, 20);
+            this.txt_name.Size = new System.Drawing.Size(168, 20);
             this.txt_name.TabIndex = 0;
+            this.txt_name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_name_KeyPress);
             // 
             // txt_address
             // 
             this.txt_address.Location = new System.Drawing.Point(119, 48);
+            this.txt_address.Multiline = true;
             this.txt_address.Name = "txt_address";
-            this.txt_address.Size = new System.Drawing.Size(100, 20);
+            this.txt_address.Size = new System.Drawing.Size(168, 93);
             this.txt_address.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 77);
+            this.label4.Location = new System.Drawing.Point(17, 150);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 5;
@@ -106,16 +108,17 @@
             // 
             // txt_contact_no
             // 
-            this.txt_contact_no.Location = new System.Drawing.Point(119, 74);
+            this.txt_contact_no.Location = new System.Drawing.Point(119, 147);
             this.txt_contact_no.Name = "txt_contact_no";
             this.txt_contact_no.Size = new System.Drawing.Size(100, 20);
             this.txt_contact_no.TabIndex = 4;
+            this.txt_contact_no.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_contact_no_KeyPress);
             // 
             // RegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 165);
+            this.ClientSize = new System.Drawing.Size(525, 206);
             this.Controls.Add(this.btn_register);
             this.Controls.Add(this.groupBox1);
             this.Name = "RegisterCustomer";

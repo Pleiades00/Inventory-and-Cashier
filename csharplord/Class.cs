@@ -1,51 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace csharplord
 {
+    
     abstract class customer //Base class for customer to be inherited into specific type
     {
     }
 
-    sealed class reg_cust : customer //Registered Customers 
+
+    class reg_cust : customer //Registered Customers 
     {
-        string _cust_id;
-        string _name;
-        string address;
-        int contact_no;
-        string date_reg;
-        int point;
+        public string cust_id { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public int contact_no { get; set; }
+        public string date_reg { get; set; }
+        public int point { get; set; }
 
-        public string cust_id
-        {
-            get
-            {
-                return _cust_id;
-            }
-            set
-            {
-                _cust_id = value;
-            }
-        }
-
-        public string name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
-
-        public static List<reg_cust> Populate()
+        public static List<DataRow> Get()
         {
             using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
             {
@@ -55,55 +32,41 @@ namespace csharplord
                 da_Customer.FillSchema(ds_Customer, SchemaType.Source, "Customer");
                 da_Customer.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                 da_Customer.Fill(ds_Customer, "Customer");
-                DataTable dt_Customer = ds_Customer.Tables["Customer"];
-                con.Close();
-
-                List<reg_cust> cust = new List<reg_cust>();
-                foreach (DataRow dr_Customer in dt_Customer.Rows)
-                {
-                   
-
-                    cust.Add(new reg_cust
-                        (
-                        dr_Customer["cust_id"].ToString(),
-                        dr_Customer["name"].ToString(),
-                        dr_Customer["address"].ToString(),
-                        Convert.ToInt32(dr_Customer["contact_no"]),  
-                        dr_Customer["date_registered"].ToString(),
-                        Convert.ToInt32(dr_Customer["point"])
-                        )
-                        );
-                }
-
-                return cust;
+                con.Close();       
+                return ds_Customer.Tables["Customer"].AsEnumerable().ToList();
             }
         }
 
-        public static void RegisterNewCustomer(string CustomerName, string Address, int ContactNumber)
+       
+        public static void Save(string CustomerName, string Address, int ContactNumber)
         {
-            using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
+            try
             {
-                con.Open();
-                SqlDataAdapter da_Customer = new SqlDataAdapter("SELECT * FROM Customer", con);
-                DataSet ds_Customer = new DataSet("Customer");
-                da_Customer.FillSchema(ds_Customer, SchemaType.Source, "Customer");
-                da_Customer.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-                da_Customer.Fill(ds_Customer, "Customer");
-                con.Close();
-
-                using (DataRow newCustomerRow = ds_Customer.Tables["Customer"].NewRow())
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
                 {
-                    newCustomerRow["cust_id"] = "C" + (ds_Customer.Tables["Customer"].Rows.Count + 1).ToString("000");
-                    newCustomerRow["name"] = CustomerName;
-                    newCustomerRow["address"] = Address;
-                    newCustomerRow["contact_no"] = ContactNumber;
-                    newCustomerRow["date_registered"] = DateTime.Now.ToString("yyyy-MM-dd");
-                    newCustomerRow["point"] = 0;
+                    using (SqlCommand cmd = new SqlCommand("InsertCustomer", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    ds_Customer.Tables["Customer"].Rows.Add(newCustomerRow);
-                    
+                        cmd.Parameters.AddWithValue("@name", CustomerName);
+                        cmd.Parameters.AddWithValue("@address", Address);
+                        cmd.Parameters.AddWithValue("@contact_no", ContactNumber);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void Delete(string CustomerID)
+        {
+
         }
 
         public reg_cust()
