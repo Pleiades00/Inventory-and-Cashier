@@ -25,6 +25,11 @@ namespace csharplord.Membership
                     list_reg[x].name
                 },-1));
             }
+
+            for (int x = 0; x < listview_customer.Columns.Count; x++)
+            {
+                listview_customer.Columns[x].Width = -2;
+            }
         }
     }
 }

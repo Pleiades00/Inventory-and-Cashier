@@ -16,8 +16,8 @@ namespace csharplord
     {
         string _cust_id;
         string _name;
-        int contact_no;
         string address;
+        int contact_no;
         string date_reg;
         int point;
 
@@ -67,8 +67,8 @@ namespace csharplord
                         (
                         dr_Customer["cust_id"].ToString(),
                         dr_Customer["name"].ToString(),
-                        Convert.ToInt32(dr_Customer["contact_no"]),
                         dr_Customer["address"].ToString(),
+                        Convert.ToInt32(dr_Customer["contact_no"]),  
                         dr_Customer["date_registered"].ToString(),
                         Convert.ToInt32(dr_Customer["point"])
                         )
@@ -83,7 +83,7 @@ namespace csharplord
         { 
         }
 
-        private reg_cust(string CustomerID, string CustomerName, int ContactNumber, string Address, string DateRegistered, int PointAccumulated)
+        private reg_cust(string CustomerID, string CustomerName, string Address, int ContactNumber, string DateRegistered, int PointAccumulated)
         {
             cust_id = CustomerID;
             name = CustomerName;
