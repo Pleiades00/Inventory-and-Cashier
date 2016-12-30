@@ -7,7 +7,14 @@ using System.Data;
 
 namespace csharplord
 {
-    
+    public class ConnectDB
+    {
+        public static SqlConnection Connect()
+        {
+            return new SqlConnection(Properties.Settings.Default.cs_sqllord); 
+        }
+    }
+
     abstract class customer //Base class for customer to be inherited into specific type
     {
     }
@@ -22,18 +29,35 @@ namespace csharplord
         public string date_reg { get; set; }
         public int point { get; set; }
 
-        public static List<DataRow> Get()
+        public static IEnumerable<reg_cust> Get()
         {
-            using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
+            using (SqlConnection con = ConnectDB.Connect())
             {
-                con.Open();
-                SqlDataAdapter da_Customer = new SqlDataAdapter("SELECT * FROM Customer", con);
-                DataSet ds_Customer = new DataSet("Customer");
-                da_Customer.FillSchema(ds_Customer, SchemaType.Source, "Customer");
-                da_Customer.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-                da_Customer.Fill(ds_Customer, "Customer");
-                con.Close();       
-                return ds_Customer.Tables["Customer"].AsEnumerable().ToList();
+                using (SqlDataAdapter da_Customer = new SqlDataAdapter())
+                {
+                    using (DataTable dt_Customer = new DataTable())
+                    {
+                        using (SqlCommand cmd = new SqlCommand("SelectAllCustomer", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            da_Customer.SelectCommand = (cmd);
+                            da_Customer.Fill(dt_Customer);
+
+                            List<reg_cust> list_cust = new List<reg_cust>();
+
+                            foreach (var c in dt_Customer.AsEnumerable())
+                            {
+                                list_cust.Add(new reg_cust(c["cust_id"].ToString(),
+                                                           c["name"].ToString(),
+                                                           c["address"].ToString(),
+                                                           Convert.ToInt32(c["contact_no"]),
+                                                           c["date_registered"].ToString(),
+                                                           Convert.ToInt32(c["point"])));
+                            }
+                            return list_cust;
+                         }
+                    }
+                }
             }
         }
 
@@ -42,7 +66,7 @@ namespace csharplord
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.cs_sqllord))
+                using (SqlConnection con = ConnectDB.Connect())
                 {
                     using (SqlCommand cmd = new SqlCommand("InsertCustomer", con))
                     {
@@ -66,7 +90,19 @@ namespace csharplord
 
         public static void Delete(string CustomerID)
         {
+            using (SqlConnection con = ConnectDB.Connect())
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteCustomer", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@id", CustomerID);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
         }
 
         public reg_cust()
@@ -143,3 +179,4 @@ namespace csharplord
 
     }
 }
+

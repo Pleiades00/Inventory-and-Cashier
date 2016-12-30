@@ -16,16 +16,16 @@ namespace csharplord.Membership
         public ViewRegisteredCustomer()
         {
             InitializeComponent();
-            foreach (DataRow dr in reg_cust.Get())
+            foreach (reg_cust rg in reg_cust.Get())
             {
                 listview_customer.Items.Add(new ListViewItem(new string[]
                 {
-                    dr[0].ToString(), 
-                    dr[1].ToString(),
-                    dr[2].ToString(),
-                    dr[3].ToString(),
-                    dr[4].ToString(),
-                    dr[5].ToString()
+                    rg.cust_id.ToString(),  
+                    rg.name.ToString(),
+                    rg.address.ToString(),
+                    rg.contact_no.ToString(),
+                    rg.date_reg.ToString(),
+                    rg.point.ToString()
                 }, -1));
             }
 
